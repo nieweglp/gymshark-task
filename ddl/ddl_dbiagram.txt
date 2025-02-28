@@ -1,0 +1,60 @@
+
+TABLE orders {
+    order_id STRING [primary key]
+    customer_id STRING
+    order_date DATE
+    status STRING 
+    total_amount FLOAT64
+}
+
+
+TABLE products {
+    product_id STRING [primary key]
+    order_id STRING
+    product_name STRING
+    quantity INT64
+    price FLOAT64
+}
+
+TABLE shipping_address {
+    shipping_address_id STRING [primary key]
+    order_id STRING
+    street STRING
+    city STRING
+    country STRING
+}
+
+TABLE inventory {
+    inventory_id STRING [primary key]
+    product_id STRING
+    warehouse_id STRING
+    quantity_change INT64
+    reason STRING
+    timestamp DATETIME
+}
+
+TABLE user_activity {
+    user_activity_id STRING [primary key]
+    user_id STRING
+    activity_type STRING
+    user_agent STRING
+    timestamp DATETIME
+    session_id STRING
+    platform STRING 
+}
+
+TABLE user_customer_bridge {
+    user_customer_bridge_id STRING [primary key]
+    user_id STRING
+    customer_id STRING
+}
+
+Ref: orders.order_id < products.order_id
+
+Ref: shipping_address.order_id < orders.order_id 
+
+Ref: inventory.product_id < products.product_id
+
+Ref: user_customer_bridge.customer_id < orders.customer_id
+
+Ref: user_customer_bridge.user_id < user_activity.user_id
