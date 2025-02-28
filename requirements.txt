@@ -1,1 +1,3 @@
 apache-beam
+pytest
+pre-commit

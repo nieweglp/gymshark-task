@@ -59,7 +59,7 @@ Note: All events pushed to one single topic
 ```
 
 ### Data Modeling and Architecture
-#### Design the BigQuery data model that will store these events. 
+#### Design the BigQuery data model that will store these events.
 
 #### Table structure and relationships
 Tables:
@@ -85,4 +85,3 @@ Data model diagram in gymshark-schema.png
 DDL statements for creating tables in ddl directory.
 
 Explanation of design decisions.
-

@@ -3,7 +3,7 @@ TABLE orders {
     order_id STRING [primary key]
     customer_id STRING
     order_date DATE
-    status STRING 
+    status STRING
     total_amount FLOAT64
 }
 
@@ -40,7 +40,7 @@ TABLE user_activity {
     user_agent STRING
     timestamp DATETIME
     session_id STRING
-    platform STRING 
+    platform STRING
 }
 
 TABLE user_customer_bridge {
@@ -51,7 +51,7 @@ TABLE user_customer_bridge {
 
 Ref: orders.order_id < products.order_id
 
-Ref: shipping_address.order_id < orders.order_id 
+Ref: shipping_address.order_id < orders.order_id
 
 Ref: inventory.product_id < products.product_id
 

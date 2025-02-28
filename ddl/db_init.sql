@@ -15,7 +15,7 @@ CREATE TABLE `gymshark.data_us.orders` (
 PARTITION BY DATE(order_date)
 CLUSTER BY customer_id;
 
--- Items Table 
+-- Items Table
 CREATE TABLE `gymshark.data_us.items` (
     items_id STRING, -- UUID, PK
     product_id STRING,  -- UUID
