@@ -85,3 +85,31 @@ Data model diagram in gymshark-schema.png
 DDL statements for creating tables in ddl directory.
 
 Explanation of design decisions.
+
+Implement a Dataflow pipeline (using either Python or Java) that:
+1. Reads events from Pub/Sub
+2. Processes and transforms the data
+3. Writes events to:
+GCS in the following structure:
+``` bash
+output/
+├── order/
+│
+└── 2025/
+│
+└── 02/
+│
+└── 08/
+│
+└── 13/
+│
+└── 09/
+│
+└── order_2025020813090001.json
+├── inventory/
+│
+└── ...
+└── user_activity/
+└── ...
+```
+BigQuery, according to your data model
