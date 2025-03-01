@@ -2,7 +2,7 @@ CREATE SCHEMA IF NOT EXISTS `gymshark.data_us`
 OPTIONS(location="US");
 
 -- Orders Table
-CREATE TABLE `gymshark.data_us.orders` (
+CREATE TABLE `gymshark.data_us.order` (
     order_id STRING,  -- UUID, PK
     customer_id STRING,  -- UUID
     order_date DATE,
@@ -16,8 +16,8 @@ PARTITION BY DATE(order_date)
 CLUSTER BY customer_id;
 
 -- Items Table
-CREATE TABLE `gymshark.data_us.items` (
-    items_id STRING, -- UUID, PK
+CREATE TABLE `gymshark.data_us.item` (
+    item_id STRING, -- UUID, PK
     product_id STRING,  -- UUID
     order_id STRING,  -- UUID, orders FK
     product_name STRING,

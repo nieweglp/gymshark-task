@@ -1,3 +1,5 @@
 apache-beam
 pytest
 pre-commit
+google-cloud-storage
+uv

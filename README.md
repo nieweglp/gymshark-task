@@ -1,4 +1,3 @@
-
 Pub Sub Topic Name: backend-events-topic
 Pub Sub Topic Subscription: backend-events-topic-sub
 Note: All events pushed to one single topic
@@ -80,11 +79,13 @@ Primary keys are unique and clustering by them is not an effective. Clustering h
 BigQuery natively supports time travel and change tracking via snapshots. It allows users to query historical data from up to 7 days prior by specifying a timestamp in the FOR SYSTEM_TIME AS OF clause, enabling recovery and analysis of data as it existed at a specific point in time.
 
 #### Deliverables:
-Data model diagram in gymshark-schema.png
+Data model diagram in schema.png
 
 DDL statements for creating tables in ddl directory.
 
 Explanation of design decisions.
+
+Design decisions, which I made focus on normalization in data model. That's why I split data into more tables than raw evenets schema.
 
 Implement a Dataflow pipeline (using either Python or Java) that:
 1. Reads events from Pub/Sub
@@ -94,18 +95,18 @@ GCS in the following structure:
 ``` bash
 output/
 ├── order/
-│
-└── 2025/
-│
-└── 02/
-│
-└── 08/
-│
-└── 13/
-│
-└── 09/
-│
-└── order_2025020813090001.json
+    │
+    └── 2025/
+        │
+        └── 02/
+            │
+            └── 08/
+                │
+                └── 13/
+                    │
+                    └── 09/
+                        │
+                        └── order_2025020813090001.json
 ├── inventory/
 │
 └── ...
@@ -113,3 +114,9 @@ output/
 └── ...
 ```
 BigQuery, according to your data model
+
+For virtualenv used `uv` from `https://docs.astral.sh/uv/`
+
+Beam Pipeline is in `gymshark/pipeline.py`, with schema to Big Query in `gymshark/schema.py`.
+Unit tests and Test for pipeline is in tests catalog. You can run it in CLI using command `pytest tests/test_pipelines.py`.
+

@@ -1,19 +1,25 @@
 
-TABLE orders {
+TABLE order {
     order_id STRING [primary key]
     customer_id STRING
     order_date DATE
     status STRING
     total_amount FLOAT64
+    load_timestamp TIMESTAMP
+    source_file STRING
+    batch_id STRING
 }
 
 
-TABLE products {
+TABLE product {
     product_id STRING [primary key]
     order_id STRING
     product_name STRING
     quantity INT64
     price FLOAT64
+    load_timestamp TIMESTAMP
+    source_file STRING
+    batch_id STRING
 }
 
 TABLE shipping_address {
@@ -22,6 +28,9 @@ TABLE shipping_address {
     street STRING
     city STRING
     country STRING
+    load_timestamp TIMESTAMP
+    source_file STRING
+    batch_id STRING
 }
 
 TABLE inventory {
@@ -30,7 +39,10 @@ TABLE inventory {
     warehouse_id STRING
     quantity_change INT64
     reason STRING
-    timestamp DATETIME
+    timestamp TIMESTAMP
+    load_timestamp TIMESTAMP
+    source_file STRING
+    batch_id STRING
 }
 
 TABLE user_activity {
@@ -38,23 +50,29 @@ TABLE user_activity {
     user_id STRING
     activity_type STRING
     user_agent STRING
-    timestamp DATETIME
+    timestamp TIMESTAMP
     session_id STRING
     platform STRING
+    load_timestamp TIMESTAMP
+    source_file STRING
+    batch_id STRING
 }
 
 TABLE user_customer_bridge {
     user_customer_bridge_id STRING [primary key]
     user_id STRING
     customer_id STRING
+    load_timestamp TIMESTAMP
+    source_file STRING
+    batch_id STRING
 }
 
-Ref: orders.order_id < products.order_id
+Ref: order.order_id < product.order_id
 
-Ref: shipping_address.order_id < orders.order_id
+Ref: shipping_address.order_id < order.order_id
 
-Ref: inventory.product_id < products.product_id
+Ref: inventory.product_id < product.product_id
 
-Ref: user_customer_bridge.customer_id < orders.customer_id
+Ref: user_customer_bridge.customer_id < order.customer_id
 
 Ref: user_customer_bridge.user_id < user_activity.user_id
